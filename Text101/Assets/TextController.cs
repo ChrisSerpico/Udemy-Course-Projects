@@ -6,7 +6,7 @@ public class TextController : MonoBehaviour {
 
     public Text text;
 
-    private enum States { cell, mirror, sheets_0, lock_0, sheets_1, cell_mirror, lock_1, freedom };
+    private enum States { cell, mirror, sheets_0, lock_0, sheets_1, cell_mirror, lock_1, corridor_0 };
     private States myState;
     
     // Use this for initialization
@@ -36,9 +36,9 @@ public class TextController : MonoBehaviour {
         {
             state_cell_mirror();
         }
-        else if (myState == States.freedom)
+        else if (myState == States.corridor_0)
         {
-            state_freedom();
+            state_corridor_0();
         }
         else if (myState == States.lock_1)
         {
@@ -150,9 +150,10 @@ public class TextController : MonoBehaviour {
             "so you can see the lock. You can just make out fingerprints around " +
             "the buttons. You press the dirty buttons, and hear a click.\n\n" +
             "Press O to open the door\nPress R to return to roaming your cell";
+
         if (Input.GetKeyDown(KeyCode.O))
         {
-            myState = States.freedom;
+            myState = States.corridor_0;
         }
         else if (Input.GetKeyDown(KeyCode.R))
         {
@@ -160,9 +161,9 @@ public class TextController : MonoBehaviour {
         }
     }
 
-    void state_freedom()
+    void state_corridor_0()
     {
-        text.text = "You open your door and walk out of the cell. You are free!\n\n"
+        text.text = "You open your door and walk out of the cell. You are in a corridor.\n\n"
             + "Press P to play again";
 
         if (Input.GetKeyDown(KeyCode.P))
