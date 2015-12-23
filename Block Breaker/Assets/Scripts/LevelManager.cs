@@ -9,6 +9,12 @@ public class LevelManager : MonoBehaviour
         Application.LoadLevel(name);
     }
 
+    public void LoadLevel(int index)
+    {
+        Debug.Log("Level load requested for level with index " + index);
+        Application.LoadLevel(index);
+    }
+
     public void QuitRequest()
     {
         Debug.Log("Quit game request received");
@@ -17,6 +23,6 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        Application.LoadLevel(Application.loadedLevel + 1);
+        LoadLevel(Application.loadedLevel + 1);
     }
 }
