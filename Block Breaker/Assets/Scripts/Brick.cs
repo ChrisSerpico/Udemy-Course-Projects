@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Brick : MonoBehaviour {
 
-    public int maxHits;
+    private int maxHits;
     private int timesHit;
 
     public Sprite[] hitSprites;
@@ -14,6 +14,7 @@ public class Brick : MonoBehaviour {
 	void Start () {
         timesHit = 0;
         levelManager = GameObject.FindObjectOfType<LevelManager>();
+        maxHits = hitSprites.Length + 1;
 	}
 	
 	// Update is called once per frame
@@ -22,6 +23,16 @@ public class Brick : MonoBehaviour {
 	}
 
     void OnCollisionEnter2D(Collision2D collision)
+    {
+        bool isBreakable = (this.tag == "Breakable");
+
+        if (isBreakable)
+        {
+            HandleHits();
+        }
+    }
+
+    void HandleHits()
     {
         timesHit++;
         if (timesHit >= maxHits)
@@ -37,7 +48,10 @@ public class Brick : MonoBehaviour {
     void LoadSprite()
     {
         int spriteIndex = timesHit - 1;
-        this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
+        if (hitSprites[spriteIndex])
+        {
+            this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
+        }
     }
 
     // TODO remove this method once we can actually win
