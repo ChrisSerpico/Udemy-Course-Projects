@@ -6,12 +6,14 @@ public class LevelManager : MonoBehaviour
     public void LoadLevel(string name)
     {
         Debug.Log("Level load requested for: " + name);
+        Brick.breakableCount = 0;
         Application.LoadLevel(name);
     }
 
     public void LoadLevel(int index)
     {
         Debug.Log("Level load requested for level with index " + index);
+        Brick.breakableCount = 0;
         Application.LoadLevel(index);
     }
 
