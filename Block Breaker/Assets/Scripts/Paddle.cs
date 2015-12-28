@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Paddle : MonoBehaviour {
 
+    // how much the ball is affected by hitting different parts of the paddle
+    public float ballRedirectFactor;
+    
     float mousePosInBlocks;
     
     // Use this for initialization

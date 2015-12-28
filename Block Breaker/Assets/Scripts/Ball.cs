@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Ball : MonoBehaviour {
 
+    public float xVelocity = 2f;
+    public float yVelocity = 10f;
+
     private Paddle paddle;
 
     private Vector3 paddleToBallVector;
@@ -25,7 +28,7 @@ public class Ball : MonoBehaviour {
             // wait for a mouse press to launch 
             if (Input.GetMouseButtonDown(0))
             {
-                this.GetComponent<Rigidbody2D>().velocity = new Vector2(2f, 10f);
+                this.GetComponent<Rigidbody2D>().velocity = new Vector2(xVelocity, yVelocity);
                 hasStarted = true;
             }
         }
@@ -33,9 +36,19 @@ public class Ball : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Vector2 tweak = GetComponent<Rigidbody2D>().velocity;
+
+        if (collision.collider.gameObject.tag == "Paddle")
+        {
+            tweak.x = xVelocity * ((this.transform.position.x - paddle.transform.position.x) / (paddle.GetComponent<Collider2D>().bounds.size.x / 2)) * 2f;
+            tweak.y = yVelocity;
+            Debug.Log(tweak);
+        }
+
         if (hasStarted)
         {
             GetComponent<AudioSource>().Play();
+            GetComponent<Rigidbody2D>().velocity = tweak;
         }
     }
 }
