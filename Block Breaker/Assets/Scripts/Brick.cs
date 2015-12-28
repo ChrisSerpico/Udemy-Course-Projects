@@ -62,6 +62,10 @@ public class Brick : MonoBehaviour {
         {
             this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
         }
+        else
+        {
+            Debug.LogError("Missing sprite for block " + this + " at index " + spriteIndex);
+        }
     }
 
     // TODO remove this method once we can actually win

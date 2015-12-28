@@ -42,7 +42,7 @@ public class Ball : MonoBehaviour {
         {
             tweak.x = xVelocity * ((this.transform.position.x - paddle.transform.position.x) / (paddle.GetComponent<Collider2D>().bounds.size.x / 2)) * 2f;
             tweak.y = yVelocity;
-            Debug.Log(tweak);
+            //Debug.Log(tweak);
         }
 
         if (hasStarted)
