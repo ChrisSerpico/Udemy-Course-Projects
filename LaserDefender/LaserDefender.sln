@@ -1,7 +1,7 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{50CE4D8E-AB75-FCB4-6CB5-FE0202D95134}") = "Block Breaker", "Assembly-CSharp.csproj", "{8EF7FD2A-EA24-02BA-E337-8605DF5645B6}"
+Project("{5CD83640-1B18-69D6-AB46-62B15A8045CD}") = "LaserDefender", "Assembly-CSharp.csproj", "{2739083D-BD6A-EF71-7844-B438E0DFC5F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8EF7FD2A-EA24-02BA-E337-8605DF5645B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8EF7FD2A-EA24-02BA-E337-8605DF5645B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8EF7FD2A-EA24-02BA-E337-8605DF5645B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8EF7FD2A-EA24-02BA-E337-8605DF5645B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2739083D-BD6A-EF71-7844-B438E0DFC5F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2739083D-BD6A-EF71-7844-B438E0DFC5F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2739083D-BD6A-EF71-7844-B438E0DFC5F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2739083D-BD6A-EF71-7844-B438E0DFC5F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																														GlobalSection(MonoDevelopProperties) = preSolution
+	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
@@ -36,5 +36,4 @@ Global
 		$3.inheritsScope = text/plain
 		$3.scope = text/plain
 	EndGlobalSection
-
 EndGlobal
