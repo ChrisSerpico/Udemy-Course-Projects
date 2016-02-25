@@ -76,9 +76,10 @@ public class Brick : MonoBehaviour {
         }
     }
 
-    // TODO remove this method once we can actually win
+    /*
     void SimulateWin()
     {
         levelManager.LoadNextLevel();
     }
+    */
 }
