@@ -47,6 +47,8 @@
   <ItemGroup>
      <Compile Include="Assets\Entities\Enemy Formation\EnemySpawner.cs" />
      <Compile Include="Assets\Entities\Enemy Formation\Position.cs" />
+     <Compile Include="Assets\Entities\Enemy\EnemyBehavior.cs" />
+     <Compile Include="Assets\Entities\Lasers\Projectile.cs" />
      <Compile Include="Assets\Entities\Player\PlayerController.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\MusicPlayer.cs" />
