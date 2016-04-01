@@ -3,8 +3,12 @@ using System.Collections;
 
 public class EnemyBehavior : MonoBehaviour {
 
-    public int health = 1; 
+    public int health = 1;
 
+    public GameObject laserPrefab;
+    public float projectileSpeed = 0;
+    public float fireRate = 0.2f;
+    
     void OnTriggerEnter2D(Collider2D other)
     {
         Projectile missile = other.GetComponent<Projectile>();
@@ -18,5 +22,17 @@ public class EnemyBehavior : MonoBehaviour {
             }
             Debug.Log("Enemy hit by laser!"); 
         } 
+    }
+
+    // fire a projectile
+    void Fire()
+    {
+        GameObject laser = (GameObject)Instantiate(laserPrefab, transform.position, Quaternion.identity);
+        laser.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -projectileSpeed);
+    }
+
+    void Update()
+    {
+        Fire();
     }
 }
