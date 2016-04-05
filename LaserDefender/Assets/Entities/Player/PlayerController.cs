@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject laserPrefab;
     public float projectileSpeed = 0;
     public float fireRate = 0.2f;
+    public float health = 4;
 
     float xmin;
     float xmax;
@@ -58,4 +59,19 @@ public class PlayerController : MonoBehaviour {
         float newX = Mathf.Clamp(transform.position.x, xmin, xmax);
         transform.position = new Vector3(newX, transform.position.y, transform.position.z);
 	}
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Projectile missile = other.GetComponent<Projectile>();
+        if (missile)
+        {
+            health -= missile.GetDamage();
+            missile.Hit();
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+            }
+            Debug.Log("Enemy hit by laser!");
+        }
+    }
 }
