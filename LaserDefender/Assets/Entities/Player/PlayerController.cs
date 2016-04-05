@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour {
             {
                 Destroy(gameObject);
             }
-            Debug.Log("Enemy hit by laser!");
+            Debug.Log("Player hit by laser!");
         }
     }
 }

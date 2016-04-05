@@ -7,9 +7,7 @@ public class EnemyBehavior : MonoBehaviour {
 
     public GameObject laserPrefab;
     public float projectileSpeed = 0;
-    public float fireRate = 0.5f;
-
-    private float fireInterval = 0; 
+    public float fireRate = 2f;
     
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -33,15 +31,8 @@ public class EnemyBehavior : MonoBehaviour {
         laser.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -projectileSpeed);
     }
 
-    void Update()
+    void Start()
     {
-        if (fireInterval > .99f)
-        {
-            Fire();
-        }
-        else
-        {
-            fireInterval += fireRate;
-        }
+        InvokeRepeating("Fire", 0.00001f, fireRate);
     }
 }
