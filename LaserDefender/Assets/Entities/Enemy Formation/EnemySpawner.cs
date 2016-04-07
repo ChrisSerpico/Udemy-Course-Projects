@@ -16,11 +16,7 @@ public class EnemySpawner : MonoBehaviour {
     // Use this for initialization
 	void Start () 
     {
-        foreach(Transform child in transform)
-        {
-            GameObject enemy = (GameObject)Instantiate(enemyPrefab, child.transform.position, Quaternion.identity);
-            enemy.transform.parent = child;
-        }
+        SpawnAllEnemies();
 
         float distance = transform.position.z - Camera.main.transform.position.z;
         Vector3 leftmost = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, distance));
@@ -36,6 +32,7 @@ public class EnemySpawner : MonoBehaviour {
 
     void Update()
     {
+        // keep formation from moving out of playspace
         if (movingRight)
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
@@ -47,6 +44,37 @@ public class EnemySpawner : MonoBehaviour {
             transform.position += Vector3.left * speed * Time.deltaTime;
             if (transform.position.x - width / 2f < xmin)
                 movingRight = true; 
+        }
+
+        // regenerate formation if all enemies die
+        if (AllMembersDead())
+        {
+            SpawnAllEnemies();
+        }
+    }
+
+    private bool AllMembersDead()
+    {
+        foreach(Transform childPosition in transform)
+        {
+            if (childPosition.childCount > 0)
+                return false;
+        }
+
+        return true;
+    }
+
+    private void SpawnEnemy(Transform cPosition)
+    {
+        GameObject enemy = (GameObject)Instantiate(enemyPrefab, cPosition.transform.position, Quaternion.identity);
+        enemy.transform.parent = cPosition;
+    }
+
+    private void SpawnAllEnemies()
+    {
+        foreach (Transform child in transform)
+        {
+            SpawnEnemy(child);
         }
     }
 }
