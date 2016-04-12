@@ -12,11 +12,12 @@ public class EnemySpawner : MonoBehaviour {
     private bool movingRight = true;
     private float xmin, xmax;
     private float padding = -0.25f;
-    
+
+    public float spawnDelay = 0.5f; 
     // Use this for initialization
 	void Start () 
     {
-        SpawnAllEnemies();
+        SpawnUntilFull();
 
         float distance = transform.position.z - Camera.main.transform.position.z;
         Vector3 leftmost = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, distance));
@@ -49,10 +50,23 @@ public class EnemySpawner : MonoBehaviour {
         // regenerate formation if all enemies die
         if (AllMembersDead())
         {
-            SpawnAllEnemies();
+            SpawnUntilFull();
         }
     }
 
+    private Transform NextFreePosition()
+    {
+        foreach(Transform childPosition in transform)
+        {
+            if (childPosition.childCount == 0)
+            {
+                return childPosition;
+            }
+        }
+
+        return null;
+    }
+    
     private bool AllMembersDead()
     {
         foreach(Transform childPosition in transform)
@@ -75,6 +89,21 @@ public class EnemySpawner : MonoBehaviour {
         foreach (Transform child in transform)
         {
             SpawnEnemy(child);
+        }
+    }
+
+    private void SpawnUntilFull()
+    {
+        Transform nextPosition = NextFreePosition();
+
+        if (nextPosition)
+        {
+            SpawnEnemy(nextPosition);
+        }
+
+        if (NextFreePosition())
+        {
+            Invoke("SpawnUntilFull", spawnDelay);
         }
     }
 }
