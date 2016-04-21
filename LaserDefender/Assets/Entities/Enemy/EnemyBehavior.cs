@@ -12,6 +12,9 @@ public class EnemyBehavior : MonoBehaviour {
 
     private ScoreKeeper scoreKeeper;
 
+    public AudioClip fireSound;
+    public AudioClip deathSound; 
+
     void OnTriggerEnter2D(Collider2D other)
     {
         Projectile missile = other.GetComponent<Projectile>();
@@ -21,11 +24,17 @@ public class EnemyBehavior : MonoBehaviour {
             missile.Hit();
             if (health <= 0)
             {
-                scoreKeeper.Score(score);
-                Destroy(gameObject);
+                Die();
             }
             Debug.Log("Enemy hit by laser!"); 
         } 
+    }
+
+    void Die()
+    {
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        scoreKeeper.Score(score);
+        Destroy(gameObject);
     }
 
     // fire a projectile
@@ -33,11 +42,12 @@ public class EnemyBehavior : MonoBehaviour {
     {
         GameObject laser = (GameObject)Instantiate(laserPrefab, transform.position, Quaternion.identity);
         laser.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -projectileSpeed);
+        AudioSource.PlayClipAtPoint(fireSound, transform.position);
     }
 
     void Start()
     {
-        InvokeRepeating("Fire", 0.00001f, fireRate);
+        InvokeRepeating("Fire", fireRate, fireRate);
         scoreKeeper = GameObject.Find("Score").GetComponent<ScoreKeeper>();
     }
 }

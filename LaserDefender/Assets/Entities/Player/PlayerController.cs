@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour {
     float xmin;
     float xmax;
 
+    public AudioClip fireSound; 
+
 	
 	void Start()
     {
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour {
     {
         GameObject laser = (GameObject)Instantiate(laserPrefab, transform.position, Quaternion.identity);
         laser.GetComponent<Rigidbody2D>().velocity = new Vector3(0, projectileSpeed);
+        AudioSource.PlayClipAtPoint(fireSound, transform.position);
     }
 
     // Update is called once per frame
