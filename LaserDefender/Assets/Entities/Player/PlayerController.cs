@@ -72,9 +72,16 @@ public class PlayerController : MonoBehaviour {
             missile.Hit();
             if (health <= 0)
             {
-                Destroy(gameObject);
+                Die();
             }
             Debug.Log("Player hit by laser!");
         }
+    }
+
+    void Die()
+    {
+        LevelManager manager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        manager.LoadLevel("Win");
+        Destroy(gameObject);
     }
 }
